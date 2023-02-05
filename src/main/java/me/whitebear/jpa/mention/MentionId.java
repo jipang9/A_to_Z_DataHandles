@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
 public class MentionId implements Serializable {
 
@@ -19,6 +18,12 @@ public class MentionId implements Serializable {
 
   @Column(name = "thread_id")
   private Long threadId;
+
+  public MentionId(Long userId, Long threadId) {
+    this.userId = userId;
+    this.threadId = threadId;
+  }
+  public MentionId(){}
 
   @Override
   public boolean equals(Object o) {

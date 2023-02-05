@@ -8,4 +8,5 @@ public interface ThreadService {
   List<Thread> selectNotEmptyThreadList(Channel channel);
 
   Thread insert(Thread thread);
+
 }

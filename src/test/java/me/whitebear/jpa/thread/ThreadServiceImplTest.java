@@ -11,6 +11,7 @@ import me.whitebear.jpa.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class ThreadServiceImplTest {
@@ -25,6 +26,7 @@ class ThreadServiceImplTest {
   ThreadService threadService;
 
   @Test
+  @Transactional
   void getMentionedThreadList() {
     // given
     var newUser = User.builder().username("new").password("1").build();

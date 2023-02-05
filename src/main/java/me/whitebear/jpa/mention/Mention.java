@@ -2,10 +2,6 @@ package me.whitebear.jpa.mention;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import lombok.AccessLevel;
@@ -28,17 +24,16 @@ public class Mention extends Timestamp {
    * 컬럼 - 연관관계 컬럼을 제외한 컬럼을 정의합니다.
    */
   @EmbeddedId
-  private MentionId mentionId;
-
+  private MentionId id = new MentionId();
   /**
    * 컬럼 - 연관관계 컬럼을 제외한 컬럼을 정의합니다.
    */
   @ManyToOne
-  @MapsId("user_id")
+  @MapsId("userId")
   private User user;
 
   @ManyToOne
-  @MapsId("thread_id")
+  @MapsId("threadId")
   private Thread thread;
 
   /**
@@ -50,6 +45,11 @@ public class Mention extends Timestamp {
     this.thread = thread;
   }
 
+  public Mention(MentionId id, User user, Thread thread) {
+    this.id = id;
+    this.user = user;
+    this.thread = thread;
+  }
   /**
    * 연관관계 - Foreign Key 값을 따로 컬럼으로 정의하지 않고 연관 관계로 정의합니다.
    */
